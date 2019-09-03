@@ -5,7 +5,6 @@
     "wux-grids": "../../../../dist/grids/index",
     "wux-grid": "../../../../dist/grid/index",
     "wux-cell-group": "../../dist/cell-group/index",
-    "wux-cell": "../../dist/cell/index",
-    "wux-calendar": "../../dist/calendar/index"
+    "wux-cell": "../../dist/cell/index"
   }
 }

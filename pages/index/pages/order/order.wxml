@@ -1,2 +1,14 @@
 <!--pages/index/pages/order/order.wxml-->
-<text>pages/index/pages/order/order.wxml</text>
+<wux-calendar id="wux-calendar" />
+<wux-select id="wux-select"/>
+<wux-dialog id="wux-dialog" />
+
+<view class="page">
+    <view class="page__bd">
+        <wux-cell-group>
+            <wux-cell title="选择您要预约的日期" extra="{{ dateTitle }}" bind:click="openCalendar"></wux-cell>
+            <wux-cell title="选择您要预约的时段" extra="{{ timeTitle }}" bind:click="openTimeSlot"></wux-cell>
+        </wux-cell-group>
+        <wux-button block type="balanced" bind:click="confirm">提交预约</wux-button>
+    </view>
+</view>

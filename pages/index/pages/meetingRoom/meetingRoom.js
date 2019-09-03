@@ -94,6 +94,12 @@ Page({
 
   },
 
+  toOrder(){
+    wx.redirectTo({
+      url: "../order/order",
+    })
+  },
+
   openCalendar(){
     const now = new Date()
     const minDate = now.getTime()

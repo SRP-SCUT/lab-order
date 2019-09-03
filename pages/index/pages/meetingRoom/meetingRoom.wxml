@@ -3,7 +3,7 @@
     <view class="page__bd">
         <wux-grids square>
           <block wx:for-items="{{meetingRoom}}" wx:key="{{item.id}}">
-            <wux-grid thumb="../../pages/index/imgs/meetingRoom.png" label="{{item.id}}" hoverClass="{{item.ordered? none : default}}" bind:click="openCalendar"/>
+            <wux-grid thumb="../../pages/index/imgs/meetingRoom.png" label="{{item.id}}" hoverClass="{{item.ordered? none : default}}" bind:click="toOrder"/>
           </block>
         </wux-grids>
     </view>
