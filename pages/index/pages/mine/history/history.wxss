@@ -1,0 +1,10 @@
+/* pages/index/pages/mine/history/history.wxss */
+.container{
+  overflow: hidden;
+}
+.page-body{
+  width: 100%;
+  height: auto;
+  padding: 56rpx 0 56rpx 40rpx;
+  background: white;
+}

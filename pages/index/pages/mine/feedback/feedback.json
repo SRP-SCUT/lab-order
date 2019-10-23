@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "wux-textarea": "../../../../../dist/textarea/index",
+    "wux-icon": "../../../../../dist/icon/index",
+    "wux-button": "../../../../../dist/button/index",
+    "wux-dialog": "../../../../../dist/dialog/index"
+  },
+  "navigationBarTitleText": "使用反馈"
+}

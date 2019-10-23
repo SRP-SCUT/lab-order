@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "wux-cell": "../../../../../dist/cell/index",
+    "wux-cell-group": "../../../../../dist/cell-group/index"
+  },
+  "navigationBarTitleText": "预约历史"
+}

@@ -1,0 +1,10 @@
+<!--pages/index/pages/mine/history/history.wxml-->
+<view class="container">
+  <view class="page-body">
+    <wux-cell-group title="预约清单">
+                <block wx:for="{{ orderList }}" wx:key="" wx:for-item="child">
+                    <wux-cell title="{{ child.room}}" extra="{{ child.date }}" is-link url="{{ child.url }}"></wux-cell>
+                </block>
+            </wux-cell-group>
+  </view>
+</view>

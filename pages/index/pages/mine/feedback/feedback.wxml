@@ -1,0 +1,6 @@
+<!--pages/index/pages/mine/feedback/feedback.wxml-->
+<wux-dialog id="wux-dialog" />
+<wux-dialog id="wux-dialog--alert" />
+
+<wux-textarea hasCount rows="3" cursorSpacing="80" placeholder="请在此处输入您宝贵的意见与建议..." value="{{ suggestion }}" controlled bind:change="onChange"/>
+<wux-button block type="balanced" bind:click="submit"><wux-icon type="ios-checkmark" size="24"/>提交</wux-button>

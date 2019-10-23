@@ -1,0 +1,14 @@
+<!--pages/index/pages/mine/mine.wxml-->
+<view class="container">
+    <view class="userinfo">
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+         <block wx:else>
+        <view><image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image></view>
+        <view><text class="userinfo-nickname">{{userInfo.nickName}}</text></view>
+        </block>
+    </view>
+    <view class="page-body">
+    <wux-cell title="历史预约" is-link url="history/history"></wux-cell>
+    <wux-cell title="使用反馈" is-link url="feedback/feedback"></wux-cell>
+    </view>
+</view>

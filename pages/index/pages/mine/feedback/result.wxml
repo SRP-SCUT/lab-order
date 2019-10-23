@@ -1,0 +1,9 @@
+<!--pages/index/pages/mine/feedback/result.wxml-->
+<wux-result
+    title="提交成功"
+    label="谢谢您的反馈，我们将尽快采取并改进"
+    buttons="{{ buttons }}"
+    extra="Copyright © 2019 lab Order"
+    fixed
+    bind:click="onClick"
+/>

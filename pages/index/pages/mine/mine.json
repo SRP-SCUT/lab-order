@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh":false,
+  "usingComponents": {
+    "wux-cell": "../../../../dist/cell/index"
+  },
+  "navigationBarTitleText":"个人中心"
+}

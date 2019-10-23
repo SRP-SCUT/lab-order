@@ -4,7 +4,11 @@
     "pages/logs/logs",
     "pages/index/pages/labRoom/labRoom",
     "pages/index/pages/meetingRoom/meetingRoom",
-    "pages/index/pages/order/order"
+    "pages/index/pages/order/order",
+    "pages/index/pages/mine/mine",
+    "pages/index/pages/mine/history/history",
+    "pages/index/pages/mine/feedback/feedback",
+    "pages/index/pages/mine/feedback/result"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,13 +22,13 @@
         "pagePath": "pages/index/index",
         "text": "预约",
         "iconPath": "images/order.png",
-        "selectedIconPath":"images/order.png"
+        "selectedIconPath": "images/order.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/index/pages/mine/mine",
         "text": "我的",
-        "iconPath":"images/mine.png",
-        "selectedIconPath":"images/mine.png"
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine.png"
       }
     ]
   },

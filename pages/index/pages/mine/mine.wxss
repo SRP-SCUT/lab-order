@@ -1,0 +1,30 @@
+/* pages/index/pages/mine/mine.wxss */
+.container{
+  overflow: hidden;
+}
+.userinfo {
+  text-align: center;
+  width: 100%;
+  height: 30%;
+  background: white;
+  align-items: center;
+}
+.userinfo-avatar{
+  margin-top: 100rpx;
+  border-radius: 90rpx;
+  height: 130rpx;
+  width: 130rpx;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: #f5f7f9;
+  justify-content: unset;
+}
+.page-body{
+  width: 100%;
+  height: auto;
+  padding: 56rpx 0 56rpx 40rpx;
+  background: white;
+}
