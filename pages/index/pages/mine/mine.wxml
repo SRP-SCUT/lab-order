@@ -8,6 +8,7 @@
         </block>
     </view>
     <view class="page-body">
+    <wux-cell title="绑定工号" is-link url="bindup/bindup"></wux-cell>
     <wux-cell title="历史预约" is-link url="history/history"></wux-cell>
     <wux-cell title="使用反馈" is-link url="feedback/feedback"></wux-cell>
     </view>

@@ -1,0 +1,7 @@
+/* pages/index/pages/mine/bindup/bindup.wxss */
+.page-body{
+  width: 100%;
+  height: auto;
+  padding: 56rpx 0 56rpx 0rpx;
+  background: white;
+}

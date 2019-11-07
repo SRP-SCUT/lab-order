@@ -1,11 +1,55 @@
 // pages/index/pages/labRoom/labRoom.js
+import { $wuxCalendar } from '../../../../dist/index'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    labRoom: [
+      {
+        id: "138",
+        ordered: false,
+        orderPerson: null,
+        orderTime: null,
+        orderDate: null
+      },
+      {
+        id: "230",
+        ordered: false,
+        orderPerson: null,
+        orderTime: null,
+        orderDate: null
+      },
+      {
+        id: "231",
+        ordered: false,
+        orderPerson: null,
+        orderTime: null,
+        orderDate: null
+      },
+      {
+        id: "234",
+        ordered: false,
+        orderPerson: null,
+        orderTime: null,
+        orderDate: null
+      },
+      {
+        id: "235",
+        ordered: false,
+        orderPerson: null,
+        orderTime: null,
+        orderDate: null
+      },
+      {
+        id: "236",
+        ordered: false,
+        orderPerson: null,
+        orderTime: null,
+        orderDate: null
+      },
+    ]
   },
 
   /**
@@ -62,5 +106,25 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  toOrder() {
+    wx.redirectTo({
+      url: "../orderlab/orderlab",
+    })
+  },
+
+  openCalendar() {
+    const now = new Date()
+    $wuxCalendar().open({
+      value: now,
+      //multiple: true,
+      onChange: (values, displayValues) => {
+        console.log('onChange', values, displayValues)
+        this.setData({
+          dateTitle: displayValues,
+        })
+      },
+    })
   }
 })

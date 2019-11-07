@@ -1,0 +1,14 @@
+<!--pages/index/pages/mine/bindup/bindup.wxml-->
+<wux-dialog id="wux-dialog" />
+<wux-dialog id="wux-dialog--alert" />
+
+<view class='page-body'>
+<view wx:if="{{hasProNum}}">
+ <wux-alert theme="stable" title="您已经绑定工号{{professorNum}},如要更改工号信息,您可以点击下方按钮解绑后重新绑定" />
+ <wux-button block type="balanced" bind:click="bindbreak"><wux-icon type="ios-checkmark" size="24"/>解绑当前工号</wux-button>
+</view>
+<view wx:else>
+<wux-input placeholder="请输入您的工号" bind:blur="onBlur">工号：</wux-input>
+ <wux-button block type="balanced" bind:click="bindup"><wux-icon type="ios-checkmark" size="24"/>确认绑定</wux-button>
+</view>
+</view>
