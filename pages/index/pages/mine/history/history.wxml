@@ -3,7 +3,7 @@
   <view class="page-body">
     <wux-cell-group title="预约清单">
                 <block wx:for="{{ orderList }}" wx:key="" wx:for-item="child">
-                    <wux-cell title="{{ child.room}}" extra="{{ child.date }}" is-link url="{{ child.url }}"></wux-cell>
+                    <wux-cell title="{{ child.room}}" extra="{{child.status}}" bind:click='toDetail' label="{{child.date+' '+child.timeslot}}"></wux-cell>
                 </block>
             </wux-cell-group>
   </view>

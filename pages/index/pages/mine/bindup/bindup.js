@@ -72,23 +72,19 @@ Page({
 
   },
   bindbreak: function () {
-    data=this.data
+    var data=this
       $wuxDialog().alert({
         resetOnClose: true,
         title: '解绑确认',
         content: '您确定解绑当前工号'+this.data.professorNum+'吗？解绑后需要重新绑定才能预约和查询',
         onConfirm(e) {
           console.log('ok')
-          data={
+          data.setData({
             professorNum:null,
-            hasProNum:false}
-        },
+            hasProNum:false
+        })
+      }
       })
-    this.setData({
-      inputNum:null,
-      professorNum:data.professorNum,
-      hasProNum:data.hasProNum
-    })
   },
   onBlur: function(e){
     this.setData({
@@ -108,6 +104,7 @@ Page({
           professorNum: that.data.inputNum,
           hasProNum: true
         })
+        app.globalData.professorNum=that.data.professorNum
       },
     })
   }

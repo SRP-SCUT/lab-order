@@ -1,24 +1,11 @@
-// pages/index/pages/mine/history/history.js
+// pages/index/pages/mine/history/detail/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orderList:[
-      {
-        room:'540',
-        date:'2019/10/23',
-        timeslot: '0',
-        status:'0'
-        },
-        {
-          room:'230',
-          date:'2019/11/13',
-          timeslot:'3',
-          status:'1'
-        }
-    ]
+
   },
 
   /**

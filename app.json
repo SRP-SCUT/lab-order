@@ -9,7 +9,8 @@
     "pages/index/pages/mine/history/history",
     "pages/index/pages/mine/feedback/feedback",
     "pages/index/pages/mine/feedback/result",
-    "pages/index/pages/mine/bindup/bindup"
+    "pages/index/pages/mine/bindup/bindup",
+    "pages/index/pages/mine/history/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
