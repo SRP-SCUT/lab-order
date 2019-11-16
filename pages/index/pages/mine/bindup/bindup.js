@@ -15,9 +15,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.professorNum){
+    if (app.globalData.workNum){
       this.setData({
-        professorNum:app.globalData.professorNum,
+        workNum:app.globalData.workNum,
         hasProNum:true
       })
     }
@@ -76,11 +76,11 @@ Page({
       $wuxDialog().alert({
         resetOnClose: true,
         title: '解绑确认',
-        content: '您确定解绑当前工号'+this.data.professorNum+'吗？解绑后需要重新绑定才能预约和查询',
+        content: '您确定解绑当前工号'+this.data.workNum+'吗？解绑后需要重新绑定才能预约和查询',
         onConfirm(e) {
           console.log('ok')
           data.setData({
-            professorNum:null,
+            workNum:null,
             hasProNum:false
         })
       }
@@ -101,10 +101,10 @@ Page({
       onConfirm(e) {
         console.log('ok')
         that.setData({
-          professorNum: that.data.inputNum,
+          workNum: that.data.inputNum,
           hasProNum: true
         })
-        app.globalData.professorNum=that.data.professorNum
+        app.globalData.workNum=that.data.workNum
       },
     })
   }

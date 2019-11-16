@@ -40,6 +40,20 @@ Page({
         }
       })
     }
+
+    console.log(this.data.userInfo.nickName)
+    var name=this.data.userInfo.nickName
+    wx.request({
+      url: '',
+      data:{
+        nickName:name
+      },
+      method:POST,
+      success:function(res){
+        var user_num=res.data.workNum
+      }
+    })
+    
   },
   getUserInfo: function (e) {
     console.log(e)
