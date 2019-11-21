@@ -16,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     if (app.globalData.workNum){
+      console.log(app.globalData.workNum)
       this.setData({
         workNum:app.globalData.workNum,
         hasProNum:true

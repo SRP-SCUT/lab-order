@@ -1,5 +1,10 @@
 //app.js
 App({
+  encodeUTF8: function (str) {
+
+    return str.replace(/[^\u0000-\u00FF]/g, function ($0) { return escape($0).replace(/(%u)(\w{4})/gi, "&#x$2;") });
+
+  },
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -27,6 +32,24 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
+              console.log(this.globalData.userInfo.nickName)
+              var name = this.globalData.userInfo.nickName
+              var that=this
+              wx.request({
+                url: 'http://127.0.0.1:8000/user/login',
+                data: {
+                  nickName: name
+                },
+                method: "POST",
+                success: function (res) {
+                  console.log(res)
+                  var data = res.data;
+                  if (data.code == 1) {
+                    that.globalData.workNum=data.data[0].workNum
+                    console.log(that.globalData.workNum)
+                  }
+                }
+              })
             }
           })
         }
@@ -36,5 +59,6 @@ App({
   globalData: {
     userInfo: null,
     workNum:null
-  }
+  },
+  
 })

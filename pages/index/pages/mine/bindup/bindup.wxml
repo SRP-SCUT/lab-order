@@ -4,7 +4,7 @@
 
 <view class='page-body'>
 <view wx:if="{{hasProNum}}">
- <wux-alert theme="stable" title="您已经绑定工号{{professorNum}},如要更改工号信息,您可以点击下方按钮解绑后重新绑定" />
+ <wux-alert theme="stable" title="您已经绑定工号{{workNum}},如要更改工号信息,您可以点击下方按钮解绑后重新绑定" />
  <wux-button block type="balanced" bind:click="bindbreak"><wux-icon type="ios-checkmark" size="24"/>解绑当前工号</wux-button>
 </view>
 <view wx:else>
