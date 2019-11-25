@@ -19,7 +19,8 @@ Page({
       console.log(app.globalData.workNum)
       this.setData({
         workNum:app.globalData.workNum,
-        hasProNum:true
+        hasProNum:true,
+        nickName: app.globalData.userInfo.nickName
       })
     }
   },
@@ -101,11 +102,25 @@ Page({
       content: '您确定绑定当前工号' + this.data.inputNum + '吗？',
       onConfirm(e) {
         console.log('ok')
-        that.setData({
-          workNum: that.data.inputNum,
-          hasProNum: true
+        wx.request({
+          url: 'http://127.0.0.1:8000/user/signup',
+          method:'POST',
+          data:{
+            workNum:that.data.inputNum,
+            nickName:that.data.nickName
+          },
+          success: function(res){
+            var data=res.data
+            if(data.code==1){
+              that.setData({
+                workNum: that.data.inputNum,
+                hasProNum: true
+              })
+              app.globalData.workNum = that.data.workNum
+            }
+          }
         })
-        app.globalData.workNum=that.data.workNum
+        
       },
     })
   }

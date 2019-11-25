@@ -94,7 +94,9 @@ Page({
 
   },
 
-  toOrder(){
+  toOrder(e){
+    var roomNumber=e.detail.label
+    wx.setStorageSync("meetingRoomNum",roomNumber)
     wx.redirectTo({
       url: "../order/order",
     })
