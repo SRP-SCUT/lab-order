@@ -1,5 +1,6 @@
 // pages/index/pages/mine/bindup/bindup.js
 import { $wuxDialog } from '../../../../../dist/index.js'
+import {serverUrl} from '../../../../common/common.js'
 
 const app=getApp()
 Page({
@@ -19,10 +20,12 @@ Page({
       console.log(app.globalData.workNum)
       this.setData({
         workNum:app.globalData.workNum,
-        hasProNum:true,
-        nickName: app.globalData.userInfo.nickName
+        hasProNum:true
       })
     }
+    this.setData({
+      nickName: app.globalData.userInfo.nickName
+    })
   },
 
   /**
@@ -74,17 +77,30 @@ Page({
 
   },
   bindbreak: function () {
-    var data=this
+    var that=this
       $wuxDialog().alert({
         resetOnClose: true,
         title: '解绑确认',
         content: '您确定解绑当前工号'+this.data.workNum+'吗？解绑后需要重新绑定才能预约和查询',
         onConfirm(e) {
           console.log('ok')
-          data.setData({
-            workNum:null,
-            hasProNum:false
-        })
+          wx.request({
+            url: serverUrl.url+'user/unbind',
+            method:'POST',
+            data:{
+              nickName:that.data.nickName,
+              workNum:that.data.workNum
+            },
+            success: function(res){
+              var data=res.data
+              if(data.code==1){
+                that.setData({
+                  workNum: null,
+                  hasProNum: false
+                })
+              }
+            }
+          })
       }
       })
   },
@@ -101,13 +117,13 @@ Page({
       title: '绑定确认',
       content: '您确定绑定当前工号' + this.data.inputNum + '吗？',
       onConfirm(e) {
-        console.log('ok')
+        console.log(that.data.nickName)
         wx.request({
-          url: 'http://127.0.0.1:8000/user/signup',
+          url: serverUrl.url+'user/signup',
           method:'POST',
-          data:{
-            workNum:that.data.inputNum,
-            nickName:that.data.nickName
+          data: {
+            nickName: that.data.nickName,
+            workNum:that.data.inputNum
           },
           success: function(res){
             var data=res.data
