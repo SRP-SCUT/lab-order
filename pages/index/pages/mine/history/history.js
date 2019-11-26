@@ -1,4 +1,5 @@
 // pages/index/pages/mine/history/history.js
+import {serverUrl} from '../../../../common/common.js'
 const app=getApp()
 Page({
 
@@ -6,20 +7,121 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderList:[
+    orderList:[],
+    meetingRoom: [{
+      title: '第一节(9:00-10.30)',
+      value: '0',
+    },
+    {
+      title: '第二节(10:30-12:00)',
+      value: '1',
+    },
+    {
+      title: '第三节(14:00-15:30)',
+      value: '2',
+    },
+    {
+      title: '第四节(15:30-17:00)',
+      value: '3',
+    },
+    {
+      title: '第五节(18:30-20:00)',
+      value: '4',
+    },
+    {
+      title: '第六节(20:00-21:30)',
+      value: '5',
+    },
+    {
+      title: '第七节(21:30-23:00)',
+      value: '6',
+    },
+    {
+      title: '整天',
+      value: 'full'
+    }],
+    labRoom: [
       {
-        room:'540',
-        date:'2019/10/23',
-        timeslot: '0',
-        status:'0'
-        },
-        {
-          room:'230',
-          date:'2019/11/13',
-          timeslot:'3',
-          status:'1'
-        }
+        title: '第一小节课',
+        value: '1',
+      },
+      {
+        title: '第二小节课',
+        value: '2',
+      },
+      {
+        title: '第三小节课',
+        value: '3',
+      },
+      {
+        title: '第四小节课',
+        value: '4',
+      },
+      {
+        title: '第五小节课',
+        value: '5',
+      },
+      {
+        title: '第六小节课',
+        value: '6',
+      },
+      {
+        title: '第七小节课',
+        value: '7',
+      },
+      {
+        title: '第八小节课',
+        value: '8',
+      },
+      {
+        title: '第九小节课',
+        value: '9',
+      },
+      {
+        title: '第十小节课',
+        value: '10',
+      },
+      {
+        title: '第十一小节课',
+        value: '11',
+      },
+      {
+        title: '第十二小节课',
+        value: '12',
+      },
+      {
+        title: '整天',
+        value: 'full',
+      },
     ]
+  },
+
+  value2title: function (values) {
+
+    for (var i = 0; i < values.length; i++) {
+      if (values[i].roomType==0){
+      for (var j = 0; j < this.data.meetingRoom.length; j++) {
+        if (values[i].timeslot == this.data.meetingRoom[j].value) {
+          values[i].timeslot = this.data.meetingRoom[j].title
+        }
+      }
+      }
+      if(values[i].roomType==1){
+        for (var j = 0; j < this.data.labRoom.length; j++) {
+          if (values[i].timeslot == this.data.labRoom[j].value) {
+            values[i].timeslot = this.data.labRoom[j].title
+          }
+        }
+      }
+      if(values[i].status==0){
+        values[i].status='已拒绝'
+      }else if(values[i].status==1){
+        values[i].status='预约成功'
+      }else if(values[i].status==2){
+        values[i].status='待处理'
+      }
+    }
+    return values
   },
 
   /**
@@ -29,6 +131,7 @@ Page({
     var userInfo=app.globalData.userInfo
     var workNum=app.globalData.workNum
     console.log(userInfo.nickName,workNum)
+    var that=this
     if (workNum==null){
       wx.navigateTo({
         url: '../bindup/bindup',
@@ -39,15 +142,20 @@ Page({
       return 0;
     }
     wx.request({
-      url: 'http://127.0.0.1:8000/user/history',
+      url: serverUrl.url+'user/history',
       data:{
         nickName:userInfo.nickName,
         workNum:workNum
       },
       method: 'POST',
       success: function (res) {
-        console.log(res.data)
-        var user_num = res.data.workNum
+        if(res.data.code==1){
+          var data=res.data.data
+          data=that.value2title(data)
+          that.setData({
+            orderList:data
+          })
+        }
       }
     })
   },

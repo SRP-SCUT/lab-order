@@ -2,6 +2,7 @@
 import { $wuxCalendar } from '../../../../dist/index'
 import {$wuxSelect}from '../../../../dist/index'
 import { $wuxDialog } from '../../../../dist/index'
+import {serverUrl} from '../../../common/common'
 
 Page({
 
@@ -12,7 +13,40 @@ Page({
     orderTime:'',
     orderDate:[],
     timeTitle: '',
-    dateTitle: []
+    dateTitle: '',
+    options:[],
+    defaultOptions: [{
+      title: '第一节(9:00-10.30)',
+      value: '0',
+    },
+      {
+        title: '第二节(10:30-12:00)',
+        value: '1',
+      },
+      {
+        title: '第三节(14:00-15:30)',
+        value: '2',
+      },
+      {
+        title: '第四节(15:30-17:00)',
+        value: '3',
+      },
+      {
+        title: '第五节(18:30-20:00)',
+        value: '4',
+      },
+      {
+        title: '第六节(20:00-21:30)',
+        value: '5',
+      },
+      {
+        title: '第七节(21:30-23:00)',
+        value: '6',
+      },
+      {
+        title: '整天',
+        value: 'full'
+      }]
   },
 
   /**
@@ -87,8 +121,35 @@ Page({
         console.log('onChange', values, displayValues)
         this.setData({
           dateTitle: displayValues,
+          options:this.data.defaultOptions
         })
-        console.log(this.data)
+        var that=this
+        console.log(that.data)
+        wx.request({
+          url: serverUrl.url +'user/meetingRoom/checkTime',
+          method: 'POST',
+          data:{
+            roomNum:that.data.roomNum,
+            date: that.data.dateTitle[0]
+          },
+          success:function(res){
+            var data=res.data.data
+            if(res.data.code==1){
+              var option=that.data.options
+              for(var i=0;i<data.length;i++){
+                for(var j=0;j<option.length;j++){
+                  if (option[j].value==data[i]){
+                    option.splice(j,1)
+                  }
+                }
+              }
+              console.log(option)
+              that.setData({
+                options:option
+              })
+            }
+          }
+        })
       },
     })
   },
@@ -100,40 +161,7 @@ Page({
         title: '请选择时段',
         confirmText: '确定',
       },
-      options: [
-        {
-          title: '第一节(9:00-10.30)',
-          value: '1',
-        },
-        {
-          title: '第二节(10:30-12:00)',
-          value: '2',
-        },
-        {
-          title: '第三节(14:00-15:30)',
-          value: '3',
-        },
-        {
-          title: '第四节(15:30-17:00)',
-          value: '4',
-        },
-        {
-          title: '第五节(18:30-20:00)',
-          value: '5',
-        },
-        {
-          title: '第六节(20:00-21:30)',
-          value: '6',
-        },
-        {
-          title: '第七节(21:30-23:00)',
-          value: '7',
-        },
-        {
-          title: '整天',
-          value: 'full'
-        },
-      ],
+      options: this.data.options,
       onChange: (value, index, options) => {
         console.log('onChange', value, index, options)
         if(index.length>0&&index[0]!=-1){

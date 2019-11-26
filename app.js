@@ -1,4 +1,6 @@
 //app.js
+//import {serverUrl} from '../pages/common/common.js'
+
 App({
   encodeUTF8: function (str) {
 
