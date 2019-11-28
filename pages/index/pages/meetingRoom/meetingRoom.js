@@ -1,5 +1,8 @@
 // pages/index/pages/meetingRoom/meetingRoom.js
 import {$wuxCalendar} from '../../../../dist/index'
+
+const app=getApp()
+
 Page({
 
   /**
@@ -42,7 +45,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if(!app.globalData.workNum){
+      wx.navigateTo({url: '../mine/bindup/bindup',})
+    }
   },
 
   /**

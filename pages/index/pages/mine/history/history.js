@@ -43,51 +43,51 @@ Page({
     labRoom: [
       {
         title: '第一小节课',
-        value: '1',
+        value: '0',
       },
       {
         title: '第二小节课',
-        value: '2',
+        value: '1',
       },
       {
         title: '第三小节课',
-        value: '3',
+        value: '2',
       },
       {
         title: '第四小节课',
-        value: '4',
+        value: '3',
       },
       {
         title: '第五小节课',
-        value: '5',
+        value: '4',
       },
       {
         title: '第六小节课',
-        value: '6',
+        value: '5',
       },
       {
         title: '第七小节课',
-        value: '7',
+        value: '6',
       },
       {
         title: '第八小节课',
-        value: '8',
+        value: '7',
       },
       {
         title: '第九小节课',
-        value: '9',
+        value: '8',
       },
       {
         title: '第十小节课',
-        value: '10',
+        value: '9',
       },
       {
         title: '第十一小节课',
-        value: '11',
+        value: '10',
       },
       {
         title: '第十二小节课',
-        value: '12',
+        value: '11',
       },
       {
         title: '整天',
@@ -106,6 +106,7 @@ Page({
         }
       }
       }
+      console.log(values[i])
       if(values[i].roomType==1){
         for (var j = 0; j < this.data.labRoom.length; j++) {
           if (values[i].timeslot == this.data.labRoom[j].value) {
@@ -151,7 +152,9 @@ Page({
       success: function (res) {
         if(res.data.code==1){
           var data=res.data.data
+          console.log(data)
           data=that.value2title(data)
+          console.log(data)
           that.setData({
             orderList:data
           })

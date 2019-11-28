@@ -38,7 +38,7 @@ App({
               var name = this.globalData.userInfo.nickName
               var that=this
               wx.request({
-                url: 'http://47.105.167.243:8000/user/login',
+                url: 'http://127.0.0.1:8000/user/login',
                 data: {
                   nickName: name
                 },

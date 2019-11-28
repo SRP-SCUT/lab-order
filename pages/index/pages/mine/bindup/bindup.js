@@ -93,6 +93,7 @@ Page({
             },
             success: function(res){
               var data=res.data
+              console.log(data)
               if(data.code==1){
                 that.setData({
                   workNum: null,
