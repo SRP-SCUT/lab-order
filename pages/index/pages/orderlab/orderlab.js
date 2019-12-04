@@ -210,12 +210,32 @@ Page({
     })
   },
   confirm() {
+    var that = this
+    console.log(that.data)
     $wuxDialog().confirm({
       resetOnClose: true,
       closable: true,
       title: '确认预约信息',
       content: '您将预约' + this.data.dateTitle + "的以下时间段: \n" + this.data.timeTitle,
       onConfirm(e) {
+        wx.request({
+          url: serverUrl.url + 'user/labRoom/order',
+          method: 'POST',
+          data: {
+            teacherId: that.data.workNum,
+            roomNum: that.data.roomNum,
+            date: that.data.dateTitle[0],
+            timeslot: that.data.orderTime[0]
+          },
+          success: function (res) {
+            console.log(res.data)
+            if (res.data.code == 1) {
+              wx.navigateTo({
+                url: 'result',
+              })
+            }
+          }
+        })
         console.log('预约成功')
       },
       onCancel(e) {

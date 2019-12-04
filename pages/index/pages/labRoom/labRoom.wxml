@@ -1,10 +1,39 @@
-<wux-calendar id="wux-calendar"/>
+<!--pages/index/pages/labRoom/labRoom.wxml-->
+<wux-calendar id="wux-calendar" />
+<wux-select id="wux-select"/>
+<wux-dialog id="wux-dialog" />
+
 <view class="page">
     <view class="page__bd">
-        <wux-grids square>
-          <block wx:for-items="{{labRoom}}" wx:key="{{item.id}}">
-            <wux-grid thumb="../../pages/index/imgs/labRoom.png" label="{{item.id}}" hoverClass="{{item.ordered? none : default}}" bind:click="toOrder"/>
-          </block>
-        </wux-grids>
+        <wux-cell-group title="预约人数">
+            <wux-cell title="数量" hover-class="none">
+                <wux-input-number name="{{studentNum}}" longpress disabled="{{ false }}" value="{{ value }}" controlled min="{{ 0 }}" max="{{ 200 }}" bind:change="onChange" slot="footer" />
+                
+            </wux-cell>
+        </wux-cell-group>
+        <wux-button block type="balanced" bind:click="confirm">提交人数</wux-button>
+    </view>
+
+    <view class="page__bd">
+        <wux-wing-blank body-style="text-align:center; font-size:14px ">
+            <text>\n</text>
+            <view class="placeholder"> 人数规定 </view>
+        </wux-wing-blank>
+        <wux-white-space />
+        <wux-wing-blank body-style="text-align:center; font-size:13px ">
+            <view class="placeholder">人数≤40，优先安排230/231/234/235任意一间</view>
+        </wux-wing-blank>
+        <wux-white-space />
+        <wux-wing-blank body-style="text-align:center; font-size:13px ">
+            <view class="placeholder">人数≤80，优先安排230&231或234&235</view>
+        </wux-wing-blank>
+        <wux-white-space />
+        <wux-wing-blank body-style="text-align:center; font-size:13px ">
+            <view class="placeholder">人数≥80，优先安排230&231或234&235或236</view>
+        </wux-wing-blank>
+        <wux-white-space />
+        <wux-wing-blank body-style="text-align:center; font-size:13px ">
+            <view class="placeholder">人数≥140，可任选房间</view>
+        </wux-wing-blank>
     </view>
 </view>

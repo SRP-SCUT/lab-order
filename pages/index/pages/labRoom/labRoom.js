@@ -1,62 +1,27 @@
-// pages/index/pages/labRoom/labRoom.js
+// pages/index/pages/orderlab/orderlab.js
 import { $wuxCalendar } from '../../../../dist/index'
+import { $wuxSelect } from '../../../../dist/index'
+import { $wuxDialog } from '../../../../dist/index'
+
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    labRoom: [
-      {
-        id: "138",
-        ordered: false,
-        orderPerson: null,
-        orderTime: null,
-        orderDate: null
-      },
-      {
-        id: "230",
-        ordered: false,
-        orderPerson: null,
-        orderTime: null,
-        orderDate: null
-      },
-      {
-        id: "231",
-        ordered: false,
-        orderPerson: null,
-        orderTime: null,
-        orderDate: null
-      },
-      {
-        id: "234",
-        ordered: false,
-        orderPerson: null,
-        orderTime: null,
-        orderDate: null
-      },
-      {
-        id: "235",
-        ordered: false,
-        orderPerson: null,
-        orderTime: null,
-        orderDate: null
-      },
-      {
-        id: "236",
-        ordered: false,
-        orderPerson: null,
-        orderTime: null,
-        orderDate: null
-      },
-    ]
+    value: '',
+    labnum:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (!app.globalData.workNum) {
+      wx.navigateTo({ url: '../mine/bindup/bindup', })
+    }
   },
 
   /**
@@ -108,23 +73,87 @@ Page({
 
   },
 
-  toOrder() {
-    wx.redirectTo({
-      url: "../orderlab/orderlab",
+
+  onChange(e) {
+    console.log(e)
+    this.setData({
+      value: e.detail.value,
     })
   },
 
-  openCalendar() {
-    const now = new Date()
-    $wuxCalendar().open({
-      value: now,
-      //multiple: true,
-      onChange: (values, displayValues) => {
-        console.log('onChange', values, displayValues)
-        this.setData({
-          dateTitle: displayValues,
-        })
-      },
+  onFocus(e) {
+    this.setData({
+      error: isTel(e.detail.value),
     })
+    console.log('onFocus', e)
+  },
+
+  onBlur(e) {
+    this.setData({
+      error: isTel(e.detail.value),
+    })
+    console.log('onBlur', e)
+  },
+
+  onConfirm(e) {
+    console.log('onConfirm', e)
+  },
+
+  onClear(e) {
+    console.log('onClear', e)
+    this.setData({
+      error: true,
+      value: '',
+    })
+  },
+
+  onError() {
+    wx.showModal({
+      title: 'Please enter numberorder',
+      showCancel: !1,
+    })
+  },
+
+  /*
+    numberJudge(){
+  
+    },
+  
+  */
+
+  confirm() {
+    var that = this;
+    $wuxDialog().confirm({
+      resetOnClose: true,
+      closable: true,
+      title: '确认预约人数',
+      content: '您将预约的班级总人数为：' + this.data.value + "\n",
+      onConfirm(e) {
+        var studentNum = that.data.value
+        wx.setStorageSync("studentNum", studentNum)
+        if(studentNum<=40){
+          wx.redirectTo({
+            url: "../labRoom/labRoomnum",
+          })}
+        else {
+          wx.redirectTo({
+            url: "../labRoom/labRoommore",
+          })
+        }
+        },
+     
+      onCancel(e) {
+        console.log('预约取消')
+      },
+      /*
+      onChange(e){
+
+      }
+      */
+    })
+    
   }
+
+
+  
 })
