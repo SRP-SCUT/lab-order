@@ -139,6 +139,9 @@ Page({
             var data=res.data.data
             if(res.data.code==1){
               var option=that.data.options
+              if(data[0]=='full'){
+                option=[]
+              }
               for(var i=0;i<data.length;i++){
                 for(var j=0;j<option.length;j++){
                   if (option[j].value==data[i]){
@@ -202,7 +205,7 @@ Page({
             teacherId:that.data.workNum,
             roomNum: that.data.roomNum,
             date: that.data.dateTitle[0],
-            timeslot:that.data.orderTime[0]
+            timeslot:that.data.orderTime
           },
           success:function(res){
             console.log(res.data)

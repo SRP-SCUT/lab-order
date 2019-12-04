@@ -97,22 +97,31 @@ Page({
   },
 
   value2title: function (values) {
-
     for (var i = 0; i < values.length; i++) {
-      if (values[i].roomType==0){
-      for (var j = 0; j < this.data.meetingRoom.length; j++) {
-        if (values[i].timeslot == this.data.meetingRoom[j].value) {
-          values[i].timeslot = this.data.meetingRoom[j].title
+      if (values[i].roomType == 0) {
+        var result = ''
+        var timeslots = values[i].timeslot.split(',')
+        for (var j = 0; j < this.data.meetingRoom.length; j++) {
+          for(var l=0;l<timeslots.length;l++){
+          if (timeslots[l] == this.data.meetingRoom[j].value) {
+            result=result+this.data.meetingRoom[j].title+','
+          }
+          }
         }
-      }
+        values[i].timeslot = result
       }
       console.log(values[i])
       if(values[i].roomType==1){
+        var result = ''
+        var timeslots = values[i].timeslot.split(',')
         for (var j = 0; j < this.data.labRoom.length; j++) {
-          if (values[i].timeslot == this.data.labRoom[j].value) {
-            values[i].timeslot = this.data.labRoom[j].title
+          for(var l=0;l<timeslots.length;l++){
+          if (timeslots[l] == this.data.labRoom[j].value) {
+            result=result+this.data.labRoom[j].title+','
+          }
           }
         }
+        values[i].timeslot=result
       }
       if(values[i].status==0){
         values[i].status='已拒绝'
@@ -154,7 +163,6 @@ Page({
           var data=res.data.data
           console.log(data)
           data=that.value2title(data)
-          console.log(data)
           that.setData({
             orderList:data
           })
