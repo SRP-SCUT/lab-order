@@ -2,7 +2,7 @@
 <view class="page">
     <view class="page__bd">
         <wux-grids square>
-          <block wx:for-items="{{labRoom}}" wx:key="{{item.id}}">
+          <block wx:for-items="{{labRoommore}}" wx:key="{{item.id}}">
             <wux-grid thumb="../../pages/index/imgs/labRoom.png" label="{{item.id}}" hoverClass="{{item.ordered? none : default}}" bind:click="toOrder"/>
           </block>
         </wux-grids>

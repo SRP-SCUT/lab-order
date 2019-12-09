@@ -60,7 +60,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    workNum:null
+    workNum:null,
+    labnum:null
   },
   
 })

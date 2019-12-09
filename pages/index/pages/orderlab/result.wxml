@@ -1,0 +1,9 @@
+<!--pages/index/pages/mine/feedback/result.wxml-->
+<wux-result
+    title="预约成功"
+    label="您已成功预约，请等待处理，您可以在历史预约页面查看预约状态"
+    buttons="{{ buttons }}"
+    extra="Copyright © 2019 lab Order"
+    fixed
+    bind:click="onClick"
+/>

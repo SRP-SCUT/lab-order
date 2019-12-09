@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    labRoom: [
+    labRoommore: [
       {
         id: "138",
         ordered: false,
